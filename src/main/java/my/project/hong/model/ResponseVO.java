@@ -9,8 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 public class ResponseVO<T> {
 
-    private T data;
     private int resCode;
     private String resMsg;
+
+    private T data;
 
 }
