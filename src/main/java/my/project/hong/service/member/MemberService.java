@@ -1,6 +1,7 @@
 package my.project.hong.service.member;
 
 import my.project.hong.model.Member;
+import my.project.hong.model.ResponseVO;
 
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
  */
 public interface MemberService {
 
-    List<Member> getMemberList();
+    ResponseVO<Object> getMemberList();
 
 }

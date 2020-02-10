@@ -1,6 +1,6 @@
 package my.project.hong.config;
 
-import my.project.hong.model.code.Const;
+import my.project.hong.model.code.CommonConst;
 import my.project.hong.web.interceptor.AccessInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(accessInterceptor).addPathPatterns(Const.URL_ROOT);
+        registry.addInterceptor(accessInterceptor).addPathPatterns(CommonConst.URL_ROOT);
     }
 
     @Bean
@@ -41,6 +41,4 @@ public class WebConfig implements WebMvcConfigurer {
         processor.setValidator(validator());
         return processor;
     }
-
-
 }

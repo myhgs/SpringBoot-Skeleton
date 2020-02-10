@@ -1,12 +1,12 @@
 package my.project.hong.web.controller;
 
-import my.project.hong.model.code.Const;
+import my.project.hong.model.code.CommonConst;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Const.URL_ROOT)
+@RequestMapping(CommonConst.URL_ROOT)
 public class HomeController {
 
 
