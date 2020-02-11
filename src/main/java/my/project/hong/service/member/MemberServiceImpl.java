@@ -27,4 +27,13 @@ public class MemberServiceImpl implements MemberService{
                 .resMsg(ResCode.SUCCESS.getResMsg())
                 .build();
     }
+
+    @Override
+    public ResponseVO<Object> getMemberDetail(long memNo) {
+        return ResponseVO.builder()
+                .data(memberMapper.selectMemberDetail(memNo))
+                .resCode(ResCode.SUCCESS.getResCode())
+                .resMsg(ResCode.SUCCESS.getResMsg())
+                .build();
+    }
 }

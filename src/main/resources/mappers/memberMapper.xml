@@ -6,12 +6,24 @@
 
     <select id="selectMemberList" resultType="Member">
         SELECT
-            NO
+            MEM_NO
             , ID
             , NAME
             , AGE
         FROM
           MEMBER
+    </select>
+
+    <select id="selectMemberDetail" resultType="Member" parameterType="long">
+        SELECT
+            MEM_NO
+            , ID
+            , NAME
+            , AGE
+        FROM
+          MEMBER
+        WHERE
+          MEM_NO = #{memNo}
     </select>
 
 </mapper>

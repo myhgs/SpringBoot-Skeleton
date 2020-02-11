@@ -13,4 +13,6 @@ public interface MemberMapper {
 
     List<Member> selectMemberList();
 
+    Member selectMemberDetail(long memNo);
+
 }
