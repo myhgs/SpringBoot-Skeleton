@@ -11,10 +11,10 @@
             , NAME
             , AGE
         FROM
-          MEMBER
+            MEMBER
     </select>
 
-    <select id="selectMemberDetail" resultType="Member" parameterType="long">
+    <select id="selectMemberNoDetail" resultType="Member" parameterType="long">
         SELECT
             MEM_NO
             , ID
@@ -25,5 +25,29 @@
         WHERE
           MEM_NO = #{memNo}
     </select>
+
+    <select id="selectMemberIdDetail" parameterType="String" resultType="Member">
+        SELECT
+            MEM_NO
+            , ID
+            , NAME
+            , AGE
+        FROM
+            MEMBER
+        WHERE
+            ID = #{id}
+    </select>
+
+    <insert id="insertMember" parameterType="Member">
+        INSERT INTO MEMBER (
+            ID
+            , NAME
+            , AGE
+        ) VALUES (
+            #{id}
+            , #{name}
+            , #{age}
+        )
+    </insert>
 
 </mapper>

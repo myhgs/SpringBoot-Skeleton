@@ -13,6 +13,10 @@ public interface MemberMapper {
 
     List<Member> selectMemberList();
 
-    Member selectMemberDetail(long memNo);
+    Member selectMemberNoDetail(long memNo);
+
+    Member selectMemberIdDetail(String id);
+
+    long insertMember(Member member);
 
 }

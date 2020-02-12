@@ -1,5 +1,6 @@
 package my.project.hong.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Builder
@@ -7,11 +8,11 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseVO<T> {
 
-    private int resCode;
+    private String resCode;
     private String resMsg;
-
     private T data;
 
 }

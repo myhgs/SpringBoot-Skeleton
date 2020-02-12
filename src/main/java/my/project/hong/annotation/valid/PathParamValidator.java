@@ -27,7 +27,7 @@ public class PathParamValidator implements ConstraintValidator<PathParamValid, L
         Optional<Long> memNo = Optional.ofNullable(value);
         if(!memNo.isPresent()) return false;
 
-        Optional<Member> memberDetail = Optional.ofNullable(memberMapper.selectMemberDetail(memNo.get()));
+        Optional<Member> memberDetail = Optional.ofNullable(memberMapper.selectMemberNoDetail(memNo.get()));
         if(!memberDetail.isPresent()) return false;
         return true;
     }
