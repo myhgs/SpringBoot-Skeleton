@@ -6,6 +6,7 @@ import my.project.hong.model.ResponseVO;
 import my.project.hong.model.code.ResCode;
 import my.project.hong.service.member.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,6 +33,7 @@ public class MemberServiceImpl implements MemberService{
                 .build();
     }
 
+    @Cacheable(value = "member")
     @Override
     public ResponseVO<Object> getMemberDetail(long memNo) {
         Optional<Member> getMember = Optional.ofNullable(memberMapper.selectMemberNoDetail(memNo));

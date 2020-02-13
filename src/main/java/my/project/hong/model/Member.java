@@ -13,11 +13,13 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Member {
 
-    long no;
+    long memNo;
     @NotEmpty String id;
     @NotEmpty String name;
     String age;
 
 }
+
