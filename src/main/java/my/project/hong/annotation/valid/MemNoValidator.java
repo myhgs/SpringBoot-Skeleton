@@ -8,17 +8,17 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Optional;
 
-public class PathParamValidator implements ConstraintValidator<PathParamValid, Long> {
+public class MemNoValidator implements ConstraintValidator<MemNoValid, Long> {
 
     private final MemberMapper memberMapper;
 
     @Autowired
-    public PathParamValidator(MemberMapper memberMapper) {
+    public MemNoValidator(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
     }
 
     @Override
-    public void initialize(PathParamValid constraintAnnotation) {
+    public void initialize(MemNoValid constraintAnnotation) {
 
     }
 

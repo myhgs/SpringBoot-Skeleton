@@ -1,12 +1,11 @@
 package my.project.hong.web.controller;
 
-import my.project.hong.annotation.valid.PathParamValid;
+import my.project.hong.annotation.valid.MemNoValid;
 import my.project.hong.model.Member;
 import my.project.hong.model.ResponseVO;
 import my.project.hong.model.code.CommonConst;
 import my.project.hong.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +32,7 @@ public class MemberController {
     }
 
     @GetMapping("/{memNo}")
-    public ResponseVO<Object> getMemberDetail(@PathVariable(value = "memNo") @PathParamValid long memNo){
+    public ResponseVO<Object> getMemberDetail(@PathVariable(value = "memNo") @MemNoValid long memNo){
         return memberService.getMemberDetail(memNo);
     }
 
