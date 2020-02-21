@@ -5,6 +5,7 @@ import my.project.hong.model.Member;
 import my.project.hong.model.ResponseVO;
 import my.project.hong.model.code.ResCode;
 import my.project.hong.service.member.mapper.MemberMapper;
+import my.project.hong.util.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,12 @@ import java.util.Optional;
 public class MemberServiceImpl implements MemberService{
 
     private final MemberMapper memberMapper;
+    private final EmailSender emailSender;
 
     @Autowired
-    public MemberServiceImpl(MemberMapper memberMapper) {
+    public MemberServiceImpl(MemberMapper memberMapper, EmailSender emailSender) {
         this.memberMapper = memberMapper;
+        this.emailSender = emailSender;
     }
 
     @Override
@@ -54,6 +57,9 @@ public class MemberServiceImpl implements MemberService{
 
         //등록 실패시
         if(0 == memberMapper.insertMember(member)) throw new ServiceException(ResCode.ERROR_9999);
+
+        //Send Email
+        emailSender.sendSimpleMail(member.getEmail(), "Welcome!", "Welcome!");
 
         return ResponseVO.builder()
                 .data(member)

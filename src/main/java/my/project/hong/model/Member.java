@@ -19,6 +19,7 @@ public class Member {
     long memNo;
     @NotEmpty String id;
     @NotEmpty String name;
+    @NotEmpty String email;
     String age;
 
 }
