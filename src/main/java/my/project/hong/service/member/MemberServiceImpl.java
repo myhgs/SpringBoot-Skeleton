@@ -6,6 +6,9 @@ import my.project.hong.model.ResponseVO;
 import my.project.hong.model.code.ResCode;
 import my.project.hong.service.member.mapper.MemberMapper;
 import my.project.hong.util.EmailSender;
+import my.project.hong.web.interceptor.AccessInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,8 @@ import java.util.Optional;
 @Service
 public class MemberServiceImpl implements MemberService{
 
+    private static final Logger LOG = LoggerFactory.getLogger(MemberServiceImpl.class);
+
     private final MemberMapper memberMapper;
     private final EmailSender emailSender;
 
@@ -29,6 +34,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public ResponseVO<Object> getMemberList() {
+
+        LOG.debug("MemberServiceImpl.getMemberList()");
+
         return ResponseVO.builder()
                 .data(memberMapper.selectMemberList())
                 .resCode(ResCode.SUCCESS.getResCode())
@@ -39,6 +47,9 @@ public class MemberServiceImpl implements MemberService{
     @Cacheable(value = "member")
     @Override
     public ResponseVO<Object> getMemberDetail(long memNo) {
+
+        LOG.debug("MemberServiceImpl.getMemberDetail");
+
         Optional<Member> getMember = Optional.ofNullable(memberMapper.selectMemberNoDetail(memNo));
         getMember.orElseThrow(() -> new ServiceException(ResCode.ERROR_2000));
 
@@ -51,6 +62,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public ResponseVO<Object> createMember(Member member) {
+
+        LOG.debug("MemberServiceImpl.createMember");
+
         //아이디가 존재하는지 중복 체크
         Optional<Member> getMember = Optional.ofNullable(memberMapper.selectMemberIdDetail(member.getId()));
         if(getMember.isPresent()) throw new ServiceException(ResCode.ERROR_2001);
