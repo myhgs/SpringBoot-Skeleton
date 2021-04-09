@@ -25,7 +25,7 @@ public class CrawlingServiceImpl implements CrawlingService {
 
     @Override
     public void crawlingTest() {
-
+        System.out.println("나는 체크아웃을 할거야");
         Elements elems = getJsoup.select(".card_el.n_ntc.clear");
 
         elems.forEach(data -> System.out.println(data.select(".rt_area.is_tmb").select(".card_content").select("h3").select("a").text()));
