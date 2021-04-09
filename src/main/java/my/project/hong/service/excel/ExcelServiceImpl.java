@@ -22,6 +22,7 @@ public class ExcelServiceImpl implements ExcelService {
 
     @Override
     public void excelDownload(HttpServletResponse response, String type) {
+        System.out.println("또또또 풀받냐");
         if(CommonConst.TYPE_MEMBER.equals(type)){
             ExcelDown.excelDownload(response, CommonConst.TYPE_MEMBER, new Member(), memberMapper.selectMemberList());
         }else{
