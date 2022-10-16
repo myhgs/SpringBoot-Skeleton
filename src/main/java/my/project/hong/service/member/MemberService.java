@@ -8,6 +8,8 @@ import my.project.hong.model.ResponseVO;
  */
 public interface MemberService {
 
+    String testSend();
+
     ResponseVO<Object> getMemberList();
 
     ResponseVO<Object> getMemberDetail(long memNo);

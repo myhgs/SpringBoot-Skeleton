@@ -1,12 +1,12 @@
 package my.project.hong.service.member;
 
+import lombok.extern.slf4j.Slf4j;
 import my.project.hong.config.exception.ServiceException;
 import my.project.hong.model.Member;
 import my.project.hong.model.ResponseVO;
 import my.project.hong.model.code.ResCode;
 import my.project.hong.service.member.mapper.MemberMapper;
 import my.project.hong.util.EmailSender;
-import my.project.hong.web.interceptor.AccessInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import java.util.Optional;
  * Created by kiseokhong on 09/02/2020.
  */
 @Service
+@Slf4j
 public class MemberServiceImpl implements MemberService{
 
     private static final Logger LOG = LoggerFactory.getLogger(MemberServiceImpl.class);
@@ -33,10 +34,17 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public String testSend() {
+        return "AAAAAA";
+    }
+
+    @Override
     public ResponseVO<Object> getMemberList() {
 
         LOG.debug("MemberServiceImpl.getMemberList()");
-
+//        if(true){
+//            throw new ServiceException(ResCode.ERROR_1000);
+//        }
         return ResponseVO.builder()
                 .data(memberMapper.selectMemberList())
                 .resCode(ResCode.SUCCESS.getResCode())
@@ -48,16 +56,36 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public ResponseVO<Object> getMemberDetail(long memNo) {
 
+
+//        Member member = new Member(1, "ss", "vb", "dqwd", null);
+        Member test = Member.builder()
+                .memNo(0)
+                .id("aa")
+                .name("aa")
+                .email("aa")
+                .build();
         LOG.debug("MemberServiceImpl.getMemberDetail");
 
         Optional<Member> getMember = Optional.ofNullable(memberMapper.selectMemberNoDetail(memNo));
         getMember.orElseThrow(() -> new ServiceException(ResCode.ERROR_2000));
+
+        try{
+            Member m = memberMapper.selectMemberNoDetail(memNo);
+        }catch (ServiceException e){
+            throw new ServiceException(ResCode.ERROR_1000);
+        }
+
 
         return ResponseVO.builder()
                 .data(getMember.get())
                 .resCode(ResCode.SUCCESS.getResCode())
                 .resMsg(ResCode.SUCCESS.getResMsg())
                 .build();
+    }
+
+    public int test(Member member){
+        member.setId("1");
+        return 1;
     }
 
     @Override

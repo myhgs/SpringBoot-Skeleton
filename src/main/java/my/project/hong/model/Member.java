@@ -16,11 +16,19 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode
 public class Member {
 
+//    public Member(long memNo, @NotEmpty String id, @NotEmpty String name, @NotEmpty String email) {
+//        this.memNo = memNo;
+//        this.id = id;
+//        this.name = name;
+//        this.email = email;
+//    }
+
     long memNo;
     @NotEmpty String id;
     @NotEmpty String name;
     @NotEmpty String email;
     String age;
+    String age2;
 
 }
 
